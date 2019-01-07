@@ -1,6 +1,7 @@
 package nbp.api.currency;
 
-import java.util.HashMap;
+import nbp.api.currency.rates.CurrencyTable;
+
 import java.util.Map;
 
 public class CurrencyImpl implements Currency {
@@ -8,28 +9,10 @@ public class CurrencyImpl implements Currency {
     private String currencyLabel;
     private Map<String, String> currencyParameters;
 
-    private CurrencyObj currency;
+    private CurrencyTable currency;
 
-    public CurrencyImpl(CurrencyObj currency) {
+    public CurrencyImpl(CurrencyTable currency) {
         this.currency = currency;
-    }
-
-    private void mapInit() {
-        if (!currency.equals(null)) {
-            currencyParameters = new HashMap<>();
-            currencyParameters.put("table", currency.getTable());
-            currencyParameters.put("no", currency.getNo());
-            currencyParameters.put("tradingDate", currency.getTradingDate());
-            currencyParameters.put("effectiveDate", currency.getEffectiveDate());
-//            currencyParameters.put("rates", currency.getRates());
-            currencyParameters.put("country", currency.getCountry());
-            currencyParameters.put("symbol", currency.getSymbol());
-            currencyParameters.put("currency", currency.getCurrency());
-            currencyParameters.put("code", currency.getCode());
-            currencyParameters.put("bid", currency.getBid());
-            currencyParameters.put("ask", currency.getAsk());
-            currencyParameters.put("mid", currency.getMid());
-        }
     }
 
     @Override
