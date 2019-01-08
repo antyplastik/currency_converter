@@ -1,6 +1,6 @@
-package nbp.api.currency.rates;
+package nbp.api.currency;
 
-public class CurrencyRate {
+public class Rates {
 
     private String no;              // – numer tabeli
 
@@ -10,7 +10,7 @@ public class CurrencyRate {
     private String ask;             // – przeliczony kurs sprzedaży waluty (dotyczy tabeli C)
     private String mid;             // – przeliczony kurs średni waluty (dotyczy tabel A oraz B)       X
 
-    public CurrencyRate(String no, String tradingDate, String effectiveDate, String bid, String ask, String mid) {
+    public Rates(String no, String tradingDate, String effectiveDate, String bid, String ask, String mid) {
         this.no = no;
         this.tradingDate = tradingDate;
         this.effectiveDate = effectiveDate;

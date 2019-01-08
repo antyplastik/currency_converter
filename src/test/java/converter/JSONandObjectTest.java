@@ -3,12 +3,13 @@ package converter;
 import com.google.gson.Gson;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import nbp.api.currency.rates.CurrencyTable;
+import nbp.api.currency.CurrencyData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(JUnitParamsRunner.class)
@@ -30,12 +31,12 @@ public class JSONandObjectTest {
 
     @Test
     @Parameters(method = "jsonToTest")
-    public void checkDeserializationTest(String testJson, boolean result) { // JSON to string
+    public void checkDeserializationTest(String testJson, String reference) { // JSON to string
         // http://api.nbp.pl/api/exchangerates/rates/c/usd/2016-04-04/?format=json
 
-                CurrencyTable currencyTableObj = jsonConvert.deserialization(testJson);
+        CurrencyData currencyDataObj = jsonConvert.deserialization(testJson);
 
-        assertThat(currencyTableObj, is(result));
+        assertThat(currencyDataObj.getCode(), is(equalTo(reference)));
 
     }
 
@@ -57,7 +58,7 @@ public class JSONandObjectTest {
                         "    }\n" +
                         "  ]\n" +
                         "}"
-                        , true},
+                        , "USD"},
                 new Object[]{"// 20190107202958\n" +
                         "// http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json\n" +
                         "\n" +
@@ -96,7 +97,7 @@ public class JSONandObjectTest {
                         "      \"effectiveDate\": \"2018-12-31\",\n" +
                         "      \"mid\": 4.7895\n" +
                         "    },"
-                        , true}
+                        , "GBP"}
         };
     }
 

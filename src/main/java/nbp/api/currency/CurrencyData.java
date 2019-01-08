@@ -1,6 +1,8 @@
-package nbp.api.currency.rates;
+package nbp.api.currency;
 
-public class CurrencyTable {
+import java.util.List;
+
+public class CurrencyData {
 
     private String table;           // – typ tabeli
 
@@ -9,16 +11,15 @@ public class CurrencyTable {
     private String currency;        // – nazwa waluty
     private String code;            // – kod waluty
 
-//    private CurrencyRate rates;           // – lista kursów poszczególnych walut w tabeli
+    private List<Rates> rates;          // – lista kursów poszczególnych walut w tabeli
 
-    public CurrencyTable(String table, String country, String symbol, String currency, String code, String no, String tradingDate, String effectiveDate, String bid, String ask, String mid) {
+    public CurrencyData(String table, String country, String symbol, String currency, String code, List<Rates> rates) {
         this.table = table;
         this.country = country;
         this.symbol = symbol;
         this.currency = currency;
         this.code = code;
-
-//        this.rates = new CurrencyRate(no, tradingDate, effectiveDate, bid, ask, mid);
+        this.rates = rates;
     }
 
     public String getTable() {
@@ -41,7 +42,7 @@ public class CurrencyTable {
         return code;
     }
 
-//    public CurrencyRate getRates() {
-//        return rates;
-//    }
+    public List<Rates> getRates() {
+        return rates;
+    }
 }
