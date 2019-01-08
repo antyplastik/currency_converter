@@ -3,7 +3,7 @@ package converter;
 import com.google.gson.Gson;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import nbp.api.currency.CurrencyData;
+import currency.CurrencyData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +36,7 @@ public class JSONandObjectTest {
 
         CurrencyData currencyDataObj = jsonConvert.deserialization(testJson);
 
-        assertThat(currencyDataObj.getCode(), is(equalTo(reference)));
+        assertThat(currencyDataObj.getRates().get(0).getNo(), is(equalTo(reference)));
 
     }
 
@@ -58,7 +58,7 @@ public class JSONandObjectTest {
                         "    }\n" +
                         "  ]\n" +
                         "}"
-                        , "USD"},
+                        , "064/C/NBP/2016"},
                 new Object[]{"// 20190107202958\n" +
                         "// http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json\n" +
                         "\n" +
@@ -97,7 +97,7 @@ public class JSONandObjectTest {
                         "      \"effectiveDate\": \"2018-12-31\",\n" +
                         "      \"mid\": 4.7895\n" +
                         "    },"
-                        , "GBP"}
+                        , "247/A/NBP/2018"}
         };
     }
 

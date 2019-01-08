@@ -1,4 +1,4 @@
-package nbp.api.currency;
+package currency;
 
 import java.util.HashMap;
 import java.util.Map;

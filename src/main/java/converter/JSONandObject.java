@@ -1,7 +1,7 @@
 package converter;
 
 import com.google.gson.Gson;
-import nbp.api.currency.CurrencyData;
+import currency.CurrencyData;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,7 @@ public class JSONandObject implements Converter<CurrencyData, Gson> {
         for (int i = 0; i < 3; i++)
             list.remove(0);
 
-        String formattedJson = list.stream().collect(Collectors.joining()).replaceAll("([\\s]{2,})", "");
+        String formattedJson = list.stream().collect(Collectors.joining());     //.replaceAll("([\\s]{2,})", "");
         CurrencyData JSONtoCurrencyData = gson.fromJson(formattedJson, CurrencyData.class);
 
         return JSONtoCurrencyData;

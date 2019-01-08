@@ -1,4 +1,4 @@
-package nbp.api.currency;
+package currency;
 
 public interface Container<T, S> {
 
