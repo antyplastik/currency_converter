@@ -2,7 +2,6 @@ package currency;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -12,11 +11,6 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(JUnitParamsRunner.class)
 public class CurrenciesContainerTest {
-
-    @Before
-    public void setUp(){
-
-    }
 
     @Test
     @Parameters(method = "jsonToTest")

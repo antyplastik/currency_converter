@@ -1,6 +1,6 @@
 package currency;
 
-import converter.JSONandObject;
+import converter.JSONToCurrencyData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ public class CurrenciesContainer implements Container<CurrencyData, String> {
 
     @Override
     public void add(String objectToSet) {
-        CurrencyData currency = new JSONandObject().deserialization(objectToSet);
+        CurrencyData currency = new JSONToCurrencyData().deserialization(objectToSet);
         currencies.put(currency.getCode(), currency);
     }
 

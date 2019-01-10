@@ -13,14 +13,14 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(JUnitParamsRunner.class)
-public class JSONandObjectTest {
+public class JSONToCurrencyDataTest {
 
-    JSONandObject jsonConvert;
+    JSONToCurrencyData jsonConvert;
     Gson gson;
 
     @Before
     public void setUP() {
-        jsonConvert = new <String>JSONandObject();
+        jsonConvert = new <String>JSONToCurrencyData();
         gson = new Gson();
     }
 
