@@ -30,7 +30,7 @@ public class JSONandObject implements Converter<CurrencyData, Gson> {
         for (int i = 0; i < 3; i++)
             list.remove(0);
 
-        String formattedJson = list.stream().collect(Collectors.joining());     //.replaceAll("([\\s]{2,})", "");
+        String formattedJson = list.stream().collect(Collectors.joining()).replaceAll("([\\']{2,})", "");
         CurrencyData JSONtoCurrencyData = gson.fromJson(formattedJson, CurrencyData.class);
 
         return JSONtoCurrencyData;

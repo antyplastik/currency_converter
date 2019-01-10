@@ -13,14 +13,6 @@ public class CurrencyData {
 
     private List<Rates> rates;          // – lista kursów poszczególnych walut w tabeli
 
-    public CurrencyData(String table, String country, String symbol, String currency, String code, Rates rates) {
-        this.table = table;
-        this.country = country;
-        this.symbol = symbol;
-        this.currency = currency;
-        this.code = code;
-        this.rates.add(rates);
-    }
 
     public String getTable() {
         return table;
