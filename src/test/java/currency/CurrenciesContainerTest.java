@@ -1,9 +1,7 @@
-package converter;
+package currency;
 
-import com.google.gson.Gson;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import currency.CurrencyData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,31 +11,20 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(JUnitParamsRunner.class)
-public class JSONandObjectTest {
-
-    JSONandObject jsonConvert;
-    Gson gson;
+public class CurrenciesContainerTest {
 
     @Before
-    public void setUP() {
-        jsonConvert = new <String>JSONandObject();
-        gson = new Gson();
-    }
-
-    @Test
-    public void checkSerializationTest() { // string to JSON
+    public void setUp(){
 
     }
 
     @Test
     @Parameters(method = "jsonToTest")
-    public void checkDeserializationTest(String testJson, String reference) { // JSON to string
-        // http://api.nbp.pl/api/exchangerates/rates/c/usd/2016-04-04/?format=json
+    public void currencyContainerFunctionalWithCurrencyDataOnOutputTest(String json, String currencyCode){
+        CurrenciesContainer container = new CurrenciesContainer();
+        container.add(json);
 
-        CurrencyData currencyDataObj = jsonConvert.deserialization(testJson);
-
-        assertThat(currencyDataObj.getRates().get(0).getNo(), is(equalTo(reference)));
-
+        assertThat(container.get(currencyCode).getCode(),is(equalTo(currencyCode)));
     }
 
     public Object[] jsonToTest() {
@@ -58,7 +45,7 @@ public class JSONandObjectTest {
                         "    }\n" +
                         "  ]\n" +
                         "}"
-                        , "064/C/NBP/2016"},
+                        , "USD"},
                 new Object[]{"// 20190110201816\n" +
                         "// http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json\n" +
                         "\n" +
@@ -118,7 +105,7 @@ public class JSONandObjectTest {
                         "      \"mid\": 4.7907\n" +
                         "    }\n" +
                         "  ]\n" +
-                        "}", "247/A/NBP/2018"}
+                        "}", "GBP"}
         };
     }
 

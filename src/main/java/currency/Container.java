@@ -2,7 +2,7 @@ package currency;
 
 public interface Container<T, S> {
 
-    void add(T objectToSet);
+    void add(S stringOfObjectToSet);
 
     T get(S objectToFind);
 
