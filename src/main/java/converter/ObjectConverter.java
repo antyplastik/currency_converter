@@ -1,6 +1,6 @@
 package converter;
 
-public interface Converter<T,R> {
+public interface ObjectConverter<T,R> {
 
     R serialization(String strToSerial);
 
