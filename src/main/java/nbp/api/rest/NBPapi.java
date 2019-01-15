@@ -9,9 +9,19 @@ public class NBPapi {
     private String nbpApiURL = "http://api.nbp.pl/api/exchangerates/";
     //e.g. http://api.nbp.pl/api/exchangerates/rates/c/usd/2016-04-04/?format=json
 
-    public String getRates(String table, String code, String date, String topCount) throws UnirestException { // date can be today, last or date in format YYYY-MM-DD
-        HttpResponse<String> currencyDataHttpResponse = Unirest.get("http://api.nbp.pl/api/exchangerates/rates/"+table+"/"+code+"/"+date+"/"+topCount+"/?format=json")
-                .asString();
+    public static String getRates(String table, String code, String date, String startDate, String stopDate, String topCount) throws UnirestException { // date can be today, last or date in format YYYY-MM-DD
+        String url = "";
+
+        if (!startDate.equals("") && !stopDate.equals(""))
+            url = "http://api.nbp.pl/api/exchangerates/rates/" + table.toLowerCase() + "/" + code.toLowerCase() + "/" + startDate.toLowerCase()+ "/"+ stopDate.toLowerCase() + "/" + topCount;
+        else if (!date.equals(""))
+            url = "http://api.nbp.pl/api/exchangerates/rates/" + table.toLowerCase() + "/" + code.toLowerCase() + "/" + date.toLowerCase() + "/" + topCount;
+        else
+            throw new IllegalArgumentException();
+
+        HttpResponse<String> currencyDataHttpResponse =
+                Unirest.get(url + "/?format=json")
+                        .asString();
         return currencyDataHttpResponse.getBody();
     }
 }

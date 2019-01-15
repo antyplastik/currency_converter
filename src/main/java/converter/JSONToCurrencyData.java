@@ -1,7 +1,7 @@
 package converter;
 
 import com.google.gson.Gson;
-import currency.CurrencyData;
+import currency.structures.CurrencyData;
 import nbp.api.NBPjsonPreparation;
 
 public class JSONToCurrencyData implements ObjectConverter<CurrencyData, String> {

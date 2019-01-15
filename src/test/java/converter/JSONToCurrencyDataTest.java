@@ -3,7 +3,7 @@ package converter;
 import com.google.gson.Gson;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import currency.CurrencyData;
+import currency.structures.CurrencyData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

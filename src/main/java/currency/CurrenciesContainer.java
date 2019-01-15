@@ -1,9 +1,11 @@
 package currency;
 
 import converter.JSONToCurrencyData;
+import currency.structures.CurrencyData;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CurrenciesContainer implements Container<CurrencyData, String> {
 
@@ -22,5 +24,11 @@ public class CurrenciesContainer implements Container<CurrencyData, String> {
 
     public Map<String, CurrencyData> getCurrencies() {
         return currencies;
+    }
+
+    public String getCurrenciesStr(){
+        return currencies.entrySet().stream()
+                .map(entry-> entry.getKey().toUpperCase() + "\n" + entry.getValue().toString() + "\n")
+                .collect(Collectors.joining());
     }
 }

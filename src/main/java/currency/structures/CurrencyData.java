@@ -1,4 +1,4 @@
-package currency;
+package currency.structures;
 
 import java.util.List;
 
@@ -36,5 +36,19 @@ public class CurrencyData {
 
     public List<Rates> getRates() {
         return rates;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder resultStr = new StringBuilder();
+
+        resultStr.append("Currency: " + code);
+        resultStr.append("Currency name: " + currency);
+        resultStr.append("\nCurrency used in "+ country);
+
+        for (Rates rate : rates)
+            resultStr.append("\n"+rate.toString());
+
+        return resultStr.toString();
     }
 }

@@ -2,11 +2,10 @@ package nbp.api;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import converter.JSONToCurrencyData;
-import currency.CurrencyData;
+import currency.structures.CurrencyData;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import nbp.api.rest.NBPapi;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -16,20 +15,13 @@ import static org.hamcrest.Matchers.equalTo;
 @RunWith(JUnitParamsRunner.class)
 public class NBPapiTest {
 
-    NBPapi nbpApi;
-
-    @Before
-    public void setUp(){
-        nbpApi = new NBPapi();
-    }
-
     @Test
     @Parameters(method = "getJSONRequestResponse")
     public void NBPapiFunctionalTest(String table, String code, String date, String topCount, String expectedResponse) throws UnirestException {
         JSONToCurrencyData jsonDeserializer = new JSONToCurrencyData();
-        CurrencyData expectedCurrencyData = jsonDeserializer.deserialization(expectedResponse);
 
-        CurrencyData responseCurrencyData = jsonDeserializer.deserialization(nbpApi.getRates(table,code,date,topCount));
+        CurrencyData expectedCurrencyData = jsonDeserializer.deserialization(expectedResponse);
+        CurrencyData responseCurrencyData = jsonDeserializer.deserialization(NBPapi.getRates(table,code,date,"","",topCount));
 
         assertThat(responseCurrencyData.getRates().size(),equalTo(expectedCurrencyData.getRates().size()));
     }
