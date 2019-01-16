@@ -25,7 +25,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'main_and_user_communication.Main'
+        attributes 'Main-Class': 'main_and_communication_with_user.Main'
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }

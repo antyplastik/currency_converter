@@ -1,4 +1,4 @@
-package runner_and_communication_with_user;
+package main_and_communication_with_user;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import controller.Controller;

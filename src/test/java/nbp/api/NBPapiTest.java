@@ -9,6 +9,8 @@ import nbp.api.rest.NBPapi;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.management.ServiceNotFoundException;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -17,7 +19,7 @@ public class NBPapiTest {
 
     @Test
     @Parameters(method = "getJSONRequestResponse")
-    public void NBPapiFunctionalTest(String table, String code, String date, String topCount, String expectedResponse) throws UnirestException {
+    public void NBPapiFunctionalTest(String table, String code, String date, String topCount, String expectedResponse) throws UnirestException, ServiceNotFoundException {
         JSONToCurrencyData jsonDeserializer = new JSONToCurrencyData();
 
         CurrencyData expectedCurrencyData = jsonDeserializer.deserialization(expectedResponse);
