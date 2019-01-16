@@ -29,6 +29,7 @@ public class PicoTerm implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("NBP api client and currency converter" + "\t" + "v1.0");
         if (inputParametersArgs != null) {
 
             if (table == null)
@@ -47,10 +48,10 @@ public class PicoTerm implements Runnable {
                 lastTopCount = "";
             else {
                 date = "last";
-                if  (Integer.parseInt(lastTopCount) > 10){
+                if (Integer.parseInt(lastTopCount) > 10) {
                     System.out.println("[ERROR] The user hasn't entered a number between 0 and 10. Changed to 10");
                     lastTopCount = "10";
-                }else if (Integer.parseInt(lastTopCount) <= 0){
+                } else if (Integer.parseInt(lastTopCount) <= 0) {
                     System.out.println("[ERROR] The user hasn't entered a number between 0 and 10. Changed to today rates");
                     date = "today";
                     lastTopCount = "";
