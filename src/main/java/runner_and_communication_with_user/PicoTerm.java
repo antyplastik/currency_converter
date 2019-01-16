@@ -9,8 +9,8 @@ import picocli.CommandLine.Parameters;
 @CommandLine.Command(name = "NBP api client", description = "NBP api client and currency converter", version = "v1.0")
 public class PicoTerm implements Runnable {
 
-    @Parameters(arity = "1..*", paramLabel = "TEXT", description = "Input currency or currencies to process. Use three-letter currency code compliant with ISO 4217 standard" +
-            "\nIf you don't use any options, you'll get today's exchange rate from ")
+    @Parameters(arity = "1..*", paramLabel = "CURRENCY_CODE", description = "Input currency or currencies to process. Use three-letter currency code compliant with ISO 4217 standard" +
+            "\nIf you don't use any options to CURRENCY_CODE, you'll get today's exchange rate")
     private String[] inputParametersArgs;
 
     @Option(names = {"-t", "--table"}, arity = "1", description = "Type A, B or C (buy-sell table)")
@@ -29,11 +29,11 @@ public class PicoTerm implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("NBP api client and currency converter" + "\t" + "v1.0");
+        System.out.println("NBP Api Client and currency converter" + "\t" + "v1.0");
         if (inputParametersArgs != null) {
 
             if (table == null)
-                table = "a";
+                table = "c";
 
             if (date == null)
                 date = "today";
