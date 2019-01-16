@@ -43,7 +43,7 @@ public class CurrencyData {
         StringBuilder resultStr = new StringBuilder();
 
         resultStr.append("Currency: " + code);
-        resultStr.append("Currency name: " + currency);
+        resultStr.append("\nCurrency name: " + currency);
         resultStr.append("\nCurrency used in "+ country);
 
         for (Rates rate : rates)
