@@ -6,10 +6,10 @@ import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@CommandLine.Command(name = "text_statistics", description = "Language detector\nYou can detect language of input text (pasted text) or file", version = "v1.0")
+@CommandLine.Command(name = "NBP api client", description = "NBP api client and currency converter", version = "v1.0")
 public class PicoTerm implements Runnable {
 
-    @Parameters(arity = "1..*", paramLabel = "TEXT", description = "Input currency or currencies to process. Use three-letter currency code compliant with ISO4217" +
+    @Parameters(arity = "1..*", paramLabel = "TEXT", description = "Input currency or currencies to process. Use three-letter currency code compliant with ISO 4217 standard" +
             "\nIf you don't use any options, you'll get today's exchange rate from ")
     private String[] inputParametersArgs;
 
@@ -19,36 +19,53 @@ public class PicoTerm implements Runnable {
     @Option(names = {"-c", "--last-top-count"}, arity = "1", description = "The number of recent exchange rates")
     private String lastTopCount;
 
-    @Option(names = {"-s", "--date"}, arity = "1", description = "Enter the date of the currency rate")
+    @Option(names = {"-s", "--single-date"}, arity = "1", description = "Enter the date of the currency rate (YYYY-MM-DD => ISO 8601 standard)")
     private String date;
 
-    @Option(names = {"-d", "--start-stop-date"}, arity = "2", description = "Series of {table} exchange tables published in the date range from {start-date} to {end-date}")
+    @Option(names = {"-d", "--start-stop-dates"}, arity = "2", description = "Series of {table} exchange tables published in the date range from {start-date} to {end-date} (YYYY-MM-DD => ISO 8601 standard)")
     private String[] startStopDate;
-
-//    @Option(names = {"-e", "--end-date"}, description = "Second parameter of series of {table} exchange tables published in the date range from {start-date} to {end-date}")
-//    private String[] stopDate;
 
     Controller controller;
 
     @Override
     public void run() {
+        if (inputParametersArgs != null) {
 
-        if (inputParametersArgs != null && table == null && date == null && startStopDate == null && lastTopCount == null)
-            controller = new Controller(inputParametersArgs, "today", "", "", "a", "");
+            if (table == null)
+                table = "a";
 
-        else if (inputParametersArgs != null && table != null && date != null && startStopDate == null && lastTopCount != null)
-            controller = new Controller(inputParametersArgs, date, "", "", table, lastTopCount);
+            if (date == null)
+                date = "today";
 
-        else if (inputParametersArgs != null && table != null && startStopDate[0] != null && startStopDate[1] != null)
-            controller = new Controller(inputParametersArgs, "", "", "", table, "");
+            if (startStopDate == null) {
+                startStopDate = new String[2];
+                startStopDate[0] = "";
+                startStopDate[1] = "";
+            }
 
-        else
-            System.out.println("[ERR] Bad arguments!");
+            if (lastTopCount == null)
+                lastTopCount = "";
+            else {
+                date = "last";
+                if  (Integer.parseInt(lastTopCount) > 10){
+                    System.out.println("[ERROR] The user hasn't entered a number between 0 and 10. Changed to 10");
+                    lastTopCount = "10";
+                }else if (Integer.parseInt(lastTopCount) <= 0){
+                    System.out.println("[ERROR] The user hasn't entered a number between 0 and 10. Changed to today rates");
+                    date = "today";
+                    lastTopCount = "";
+                }
+            }
+            if (startStopDate != null)
+                controller = new Controller(inputParametersArgs, date, startStopDate[0], startStopDate[1], table, lastTopCount);
+
+        } else
+            System.out.println("[ERROR] Bad arguments!");
 
         try {
             System.out.print(controller.getRates());
         } catch (UnirestException e) {
-            System.out.println("[ERR] API error!");
+            System.out.println("[ERROR] API error!");
         }
     }
 }

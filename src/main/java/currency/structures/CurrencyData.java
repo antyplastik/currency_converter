@@ -44,7 +44,6 @@ public class CurrencyData {
 
         resultStr.append("Currency: " + code);
         resultStr.append("\nCurrency name: " + currency);
-        resultStr.append("\nCurrency used in "+ country);
 
         for (Rates rate : rates)
             resultStr.append("\n"+rate.toString());

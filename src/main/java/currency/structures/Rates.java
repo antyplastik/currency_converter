@@ -43,11 +43,11 @@ public class Rates {
         if (effectiveDate != null)
             resultStr.append(effectiveDate + "\t");
         if(bid != null)
-            resultStr.append("bid: "+bid + "\t");
+            resultStr.append("buy: "+bid + " PLN\t  ");
         if(ask != null)
-            resultStr.append("ask: "+ask + "\t");
+            resultStr.append("sell: "+ask + " PLN\t  ");
         if(mid != null)
-            resultStr.append("mid: "+mid + "\t");
+            resultStr.append("middle: "+mid +  " PLN");
 
         return resultStr.toString();
     }

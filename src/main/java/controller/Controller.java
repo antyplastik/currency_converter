@@ -4,6 +4,8 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import currency.CurrenciesContainer;
 import nbp.api.rest.NBPapi;
 
+import javax.management.ServiceNotFoundException;
+
 public class Controller {
 
     private String[] currencies;
@@ -26,7 +28,11 @@ public class Controller {
 
     public String getRates() throws UnirestException {
         for (String code : currencies) {
-            cc.add(NBPapi.getRates(table, code, date, startDate, stopDate, topCount));
+            try {
+                cc.add(NBPapi.getRates(table, code, date, startDate, stopDate, topCount));
+            } catch (ServiceNotFoundException e) {
+                System.out.println("[ERROR] " + e.getMessage() + " => Because there is no " + code.toUpperCase() + " in table " + table.toUpperCase() + "!");
+            }
         }
         return cc.toString();
     }

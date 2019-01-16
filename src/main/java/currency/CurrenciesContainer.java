@@ -29,7 +29,7 @@ public class CurrenciesContainer implements Container<CurrencyData, String> {
     @Override
     public String toString() {
         return currencies.entrySet().stream()
-                .map(entry-> entry.getKey().toUpperCase() + "\n" + entry.getValue().toString() + "\n")
+                .map(entry-> "\n" + entry.getKey().toUpperCase() + "\n" + entry.getValue().toString() + "\n")
                 .collect(Collectors.joining());
     }
 }
