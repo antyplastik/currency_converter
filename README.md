@@ -1,4 +1,4 @@
-# NBP api client
+# NBP Api Client
 
 ### Table of content
 * [General info](#general-info)
