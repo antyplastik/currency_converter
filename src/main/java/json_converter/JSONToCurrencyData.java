@@ -1,4 +1,4 @@
-package converter;
+package json_converter;
 
 import com.google.gson.Gson;
 import currency.structures.CurrencyData;

@@ -13,7 +13,7 @@ interested in.
 Missing required parameter: CURRENCY_CODE
 Usage: NBP api client [-c=<lastTopCount>] [-s=<date>] [-t=<table>]
                       [-d=<startStopDate> <startStopDate>]... CURRENCY_CODE...
-NBP api client and currency converter
+NBP api client and currency json_converter
       CURRENCY_CODE...       Input currency or currencies to process. Use
                                three-letter currency code compliant with ISO 4217
                                standard
@@ -37,7 +37,7 @@ java -jar [jar file] eur
 ```
 Application response:
 ```concept
-NBP Api Client and currency converter	v1.0
+NBP Api Client and currency json_converter	v1.0
 
 EUR
 Currency: EUR
@@ -52,7 +52,7 @@ java -jar [jar file] -t a -c 3 eur usd cny
 ```
 Application response:
 ```concept
-NBP Api Client and currency converter	v1.0
+NBP Api Client and currency json_converter	v1.0
 
 EUR
 Currency: EUR

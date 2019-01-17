@@ -1,7 +1,7 @@
 package nbp.api;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
-import converter.JSONToCurrencyData;
+import json_converter.JSONToCurrencyData;
 import currency.structures.CurrencyData;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

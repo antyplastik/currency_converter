@@ -1,4 +1,4 @@
-package converter;
+package json_converter;
 
 public interface ObjectConverter<T,R> {
 

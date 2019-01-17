@@ -6,7 +6,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@CommandLine.Command(name = "NBP api client", description = "NBP api client and currency converter", version = "v1.0")
+@CommandLine.Command(name = "NBP api client", description = "NBP api client and currency json_converter", version = "v1.0")
 public class PicoTerm implements Runnable {
 
     @Parameters(arity = "1..*", paramLabel = "CURRENCY_CODE", description = "Input currency or currencies to process. Use three-letter currency code compliant with ISO 4217 standard" +
@@ -29,7 +29,7 @@ public class PicoTerm implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("NBP Api Client and currency converter" + "\t" + "v1.0");
+        System.out.println("NBP Api Client and currency json_converter" + "\t" + "v1.0");
         if (inputParametersArgs != null) {
 
             if (table == null)
