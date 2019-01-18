@@ -1,13 +1,13 @@
-package json_converter;
+package currency.json_to_currency;
 
 import com.google.gson.Gson;
 import currency.structures.CurrencyData;
 import nbp.api.NBPjsonPreparation;
 
-public class JSONToCurrencyData implements ObjectConverter<CurrencyData, String> {
+public class JSONToCurrencyData implements JSONConverter<CurrencyData> {
 
     @Override
-    public String serialization(String strToSerial) {
+    public String serialization(CurrencyData strToSerial) {
         return new Gson().toJson(strToSerial);
     }
 

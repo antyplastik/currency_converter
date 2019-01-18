@@ -45,6 +45,8 @@ public class CurrencyData {
         resultStr.append("Currency: " + code);
         resultStr.append("\nCurrency name: " + currency);
 
+//        Collections.reverse(rates);
+
         for (Rates rate : rates)
             resultStr.append("\n"+rate.toString());
 

@@ -1,4 +1,4 @@
-package currency.converter;
+package currency.decorators;
 
 import currency.structures.CurrencyData;
 
@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class CurrencyConvertDecor {
 
-    public static String conversionToPLN(Map<String, CurrencyData> currencyDataMap, String foreignCurrency) {
-        String result = "";
+    public  String conversionToPLN(Map<String, CurrencyData> currencyDataMap, String foreignCurrency) {
+        StringBuilder result = new StringBuilder();
 
         BigDecimal toPln = new BigDecimal(foreignCurrency);
         if(toPln != null)
@@ -16,11 +16,11 @@ public class CurrencyConvertDecor {
         else
             ;
 
-        return result;
+        return result.toString();
     }
 
     public static String conversionFromPLN(Map<String, CurrencyData> currencyDataMap, String pln) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         BigDecimal fromPln = new BigDecimal(pln);
         if(fromPln != null)
@@ -28,7 +28,7 @@ public class CurrencyConvertDecor {
         else
             ;
 
-        return result;
+        return result.toString();
     }
 
 }

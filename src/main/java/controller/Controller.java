@@ -5,6 +5,7 @@ import currency.CurrenciesContainer;
 import nbp.api.rest.NBPapi;
 
 import javax.management.ServiceNotFoundException;
+import java.util.List;
 
 public class Controller {
 
@@ -14,16 +15,18 @@ public class Controller {
     private String stopDate;
     private String table;
     private String topCount;
+    private List decorators;
 
     private CurrenciesContainer cc = new CurrenciesContainer();
 
-    public Controller(String[] currencies, String date, String startDate, String stopDate, String table, String topCount) {
+    public Controller(String[] currencies, String date, String startDate, String stopDate, String table, String topCount, List decorators) {
         this.currencies = currencies;
         this.date = date;
         this.startDate = startDate;
         this.stopDate = stopDate;
         this.table = table;
         this.topCount = topCount;
+        this.decorators = decorators;
     }
 
     public String getRates() throws UnirestException {
@@ -34,6 +37,17 @@ public class Controller {
                 System.out.println("[ERROR] " + e.getMessage() + " => Because there is no " + code.toUpperCase() + " in table " + table.toUpperCase() + "!");
             }
         }
-        return cc.toString();
+
+        if (decorators.size() != 0) {
+
+            return addDecorators(decorators, cc);
+        } else
+            return cc.toString();
+    }
+
+    private String addDecorators(List decorators, CurrenciesContainer currenciesContainer) {
+        currenciesContainer.getCurrencies();
+
+        return "";
     }
 }
