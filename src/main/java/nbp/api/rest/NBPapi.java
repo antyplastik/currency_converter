@@ -15,7 +15,7 @@ public class NBPapi {
         String url = "";
 
         if (!startDate.equals("") && !stopDate.equals(""))
-            url = "http://api.nbp.pl/api/exchangerates/rates/" + table.toLowerCase() + "/" + code.toLowerCase() + "/" + startDate.toLowerCase()+ "/"+ stopDate.toLowerCase() + "/" + topCount;
+            url = "http://api.nbp.pl/api/exchangerates/rates/" + table.toLowerCase() + "/" + code.toLowerCase() + "/" + startDate.toLowerCase() + "/" + stopDate.toLowerCase() + "/" + topCount;
         else if (!date.equals(""))
             url = "http://api.nbp.pl/api/exchangerates/rates/" + table.toLowerCase() + "/" + code.toLowerCase() + "/" + date.toLowerCase() + "/" + topCount;
         else
@@ -25,11 +25,16 @@ public class NBPapi {
                 Unirest.get(url + "/?format=json")
                         .asString();
 
-        if (currencyDataHttpResponse.getCode() > 400){
+        if (currencyDataHttpResponse.getCode() > 400) {
             String exceptionResponse = currencyDataHttpResponse.getBody().toString();
             throw new ServiceNotFoundException(exceptionResponse);
         }
 
         return currencyDataHttpResponse.getBody();
+    }
+
+    public static String getTables() {
+
+        return "";
     }
 }

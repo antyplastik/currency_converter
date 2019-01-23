@@ -2,6 +2,7 @@ package main_and_communication_with_user;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import controller.Controller;
+import currency.SupportedCurrencies;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -9,7 +10,7 @@ import picocli.CommandLine.Parameters;
 import java.util.ArrayList;
 import java.util.List;
 
-@CommandLine.Command(name = "NBP api client", description = "NBP api client and currency currency.json_to_currency", version = "v1.0")
+@CommandLine.Command(name = "NBP api client", description = "NBP api client and currency adapters", version = "v1.0")
 public class PicoTerm implements Runnable {
 
     @Parameters(arity = "1..*", paramLabel = "CURRENCY_CODE", description = "Input currency or currencies to process. Use three-letter currency code compliant with ISO 4217 standard" +
@@ -28,10 +29,13 @@ public class PicoTerm implements Runnable {
     @Option(names = {"-d", "--start-stop-dates"}, arity = "2", description = "Series of {table} exchange tables published in the date range from {start-date} to {end-date} (YYYY-MM-DD => ISO 8601 standard)")
     private String[] startStopDate;
 
+    @Option(names = {"-p", "--supported-currencies"}, description = "Get a list of supported currencies")
+    private boolean supportedCurrencies = false;
+
     @Option(names = {"-r", "--roc-indicator"}, description = "add the ROC indicator. ROC is the percentage change of the exchange rate from the current session in relation to the exchange rate from the previous session")
     private boolean rocIndicatorDecorator = false;
 
-    @Option(names = {"-f", "--foreign-currency"}, arity = "2", description = "Enter the date of the currency rate (YYYY-MM-DD => ISO 8601 standard)")
+    @Option(names = {"-f", "--foreign-currency"}, arity = "2", description = "Enter the foreign currency code and the value to be converted. E.g USD 100.00")
     private String[] foreignCurrencyDecorator;
 
 
@@ -39,7 +43,7 @@ public class PicoTerm implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("NBP Api Client and currency currency.json_to_currency" + "\t" + "v1.0");
+        System.out.println("NBP Api Client and currency adapters" + "\t" + "v1.0");
         List decorators = new ArrayList();
 
         if (inputParametersArgs != null) {
@@ -70,8 +74,9 @@ public class PicoTerm implements Runnable {
                 }
             }
 
-            if (rocIndicatorDecorator)
-                decorators.add(rocIndicatorDecorator);
+            if (rocIndicatorDecorator) {
+                decorators.add(new String[]{"ROC", "true"});
+            }
 
             if (foreignCurrencyDecorator != null) {
                 if (foreignCurrencyDecorator[0] != null && foreignCurrencyDecorator[1] != null)
@@ -81,6 +86,8 @@ public class PicoTerm implements Runnable {
             if (startStopDate != null)
                 controller = new Controller(inputParametersArgs, date, startStopDate[0], startStopDate[1], table, lastTopCount, decorators);
 
+        } else if (supportedCurrencies) {
+            System.out.println(SupportedCurrencies.get());
         } else
             System.out.println("[ERROR] Bad arguments!");
 

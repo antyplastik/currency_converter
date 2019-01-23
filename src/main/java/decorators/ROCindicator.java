@@ -1,4 +1,4 @@
-package currency.decorators;
+package decorators;
 
 public class ROCindicator {
 }

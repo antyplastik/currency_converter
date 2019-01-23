@@ -1,4 +1,4 @@
-package currency.decorators;
+package decorators;
 
 import currency.Container;
 

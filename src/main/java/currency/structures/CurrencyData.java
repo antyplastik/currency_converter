@@ -13,6 +13,10 @@ public class CurrencyData {
 
     private List<Rates> rates;          // – lista kursów poszczególnych walut w tabeli
 
+    // for a the table with various currencies
+    private String no;
+    private String tradingDate;
+    private String effectiveDate;
 
     public String getTable() {
         return table;

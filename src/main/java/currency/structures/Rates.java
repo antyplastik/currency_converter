@@ -9,6 +9,10 @@ public class Rates {
     private String ask;             // – przeliczony kurs sprzedaży waluty (dotyczy tabeli C)
     private String mid;             // – przeliczony kurs średni waluty (dotyczy tabel A oraz B)       X
 
+    // for a the table with various currencies
+    private String currency;
+    private String code;
+
     public String getNo() {
         return no;
     }
@@ -33,6 +37,14 @@ public class Rates {
         return mid;
     }
 
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
     @Override
     public String toString() {
         StringBuilder resultStr = new StringBuilder();
@@ -42,12 +54,12 @@ public class Rates {
             resultStr.append(tradingDate + "\t");
         if (effectiveDate != null)
             resultStr.append(effectiveDate + "\t");
-        if(bid != null)
-            resultStr.append("buy: "+bid + " PLN\t  ");
-        if(ask != null)
-            resultStr.append("sell: "+ask + " PLN\t  ");
-        if(mid != null)
-            resultStr.append("middle: "+mid +  " PLN");
+        if (bid != null)
+            resultStr.append("buy: " + bid + " PLN\t  ");
+        if (ask != null)
+            resultStr.append("sell: " + ask + " PLN\t  ");
+        if (mid != null)
+            resultStr.append("middle: " + mid + " PLN");
 
         return resultStr.toString();
     }

@@ -1,11 +1,11 @@
-package currency.decorators;
+package decorators;
 
 import currency.structures.CurrencyData;
 
 import java.math.BigDecimal;
 import java.util.Map;
 
-public class CurrencyConvertDecor {
+public class PLNConvertDecor {
 
     public  String conversionToPLN(Map<String, CurrencyData> currencyDataMap, String foreignCurrency) {
         StringBuilder result = new StringBuilder();

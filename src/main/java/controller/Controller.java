@@ -2,6 +2,7 @@ package controller;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import currency.CurrenciesContainer;
+import decorators.DecoratorsContainer;
 import nbp.api.rest.NBPapi;
 
 import javax.management.ServiceNotFoundException;
@@ -46,6 +47,10 @@ public class Controller {
     }
 
     private String addDecorators(List decorators, CurrenciesContainer currenciesContainer) {
+        DecoratorsContainer dc = new DecoratorsContainer();
+
+        for (Object decorator :decorators)
+
         currenciesContainer.getCurrencies();
 
         return "";

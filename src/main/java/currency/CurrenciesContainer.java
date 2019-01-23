@@ -1,6 +1,6 @@
 package currency;
 
-import currency.json_to_currency.JSONToCurrencyData;
+import adapters.JSONToCurrencyData;
 import currency.structures.CurrencyData;
 
 import java.util.HashMap;

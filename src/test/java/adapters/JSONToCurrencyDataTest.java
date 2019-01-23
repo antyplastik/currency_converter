@@ -1,4 +1,4 @@
-package currency.json_to_currency;
+package adapters;
 
 import com.google.gson.Gson;
 import junitparams.JUnitParamsRunner;
