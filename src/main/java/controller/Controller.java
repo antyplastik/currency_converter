@@ -2,11 +2,13 @@ package controller;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import currency.CurrenciesContainer;
+import currency.structures.CurrencyData;
 import decorators.DecoratorsContainer;
 import nbp.api.rest.NBPapi;
 
 import javax.management.ServiceNotFoundException;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
 
@@ -47,12 +49,12 @@ public class Controller {
     }
 
     private String addDecorators(List decorators, CurrenciesContainer currenciesContainer) {
+        Map<String, CurrencyData> currenciesMap = currenciesContainer.getCurrencies();
         DecoratorsContainer dc = new DecoratorsContainer();
 
-        for (Object decorator :decorators)
+        for (Map.Entry entry : currenciesMap.entrySet())
+            dc.add(entry.getKey().toString(), (CurrencyData)entry.getValue(),decorators);
 
-        currenciesContainer.getCurrencies();
-
-        return "";
+        return dc.toString();
     }
 }

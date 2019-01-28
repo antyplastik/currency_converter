@@ -1,29 +1,37 @@
 package decorators;
 
-import currency.structures.CurrencyData;
-
 import java.math.BigDecimal;
-import java.util.Map;
+import java.util.Optional;
 
 public class PLNConvertDecor {
 
-    public  String conversionToPLN(Map<String, CurrencyData> currencyDataMap, String foreignCurrency) {
-        StringBuilder result = new StringBuilder();
+    private BigDecimal amountOfCurrency;
 
-        BigDecimal toPln = new BigDecimal(foreignCurrency);
-        if(toPln != null)
-            ;
-        else
-            ;
-
-        return result.toString();
+    public PLNConvertDecor(String amountOfCurrency) {
+        this.amountOfCurrency = valueCheck(amountOfCurrency);
     }
 
-    public static String conversionFromPLN(Map<String, CurrencyData> currencyDataMap, String pln) {
+    private static BigDecimal valueCheck(String value) {
+        Optional<BigDecimal> bigDecimalTestValue = Optional.ofNullable(new BigDecimal(value));
+        BigDecimal bd;
+        if (bigDecimalTestValue.isPresent()) {
+            bd = new BigDecimal(value);
+        } else
+            throw new IllegalArgumentException("[ERROR] Wrong value of amount to convert to PLN");
+        return bd;
+    }
+
+    public static String conversionToPLN(String amountOfcurrency) {
+
+
+        return "";
+    }
+
+    public static String conversionFromPLN(String amountOfPLN) {
         StringBuilder result = new StringBuilder();
 
-        BigDecimal fromPln = new BigDecimal(pln);
-        if(fromPln != null)
+        BigDecimal fromPln = new BigDecimal(amountOfPLN);
+        if (fromPln != null)
             ;
         else
             ;
