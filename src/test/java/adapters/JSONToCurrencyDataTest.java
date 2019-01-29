@@ -1,9 +1,8 @@
 package adapters;
 
-import com.google.gson.Gson;
+import currency.structures.CurrencyData;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import currency.structures.CurrencyData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +15,10 @@ import static org.hamcrest.Matchers.is;
 public class JSONToCurrencyDataTest {
 
     JSONToCurrencyData jsonConvert;
-    Gson gson;
 
     @Before
     public void setUP() {
-        jsonConvert = new <String>JSONToCurrencyData();
-        gson = new Gson();
+        jsonConvert = new JSONToCurrencyData();
     }
 
     @Test

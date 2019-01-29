@@ -18,8 +18,6 @@ public class DecoratorsContainer {
         for (Rates oneRate : currencyRatesList) {
             StringBuilder rateStr = new StringBuilder(oneRate.toString());
 
-            rateStr.append(addDefaultNullPoolsFromRate(oneRate));
-
             for (Decorator decorator : decorators) {
                 rateStr.append("\t" + decorator.decorate(oneRate));
             }
@@ -31,10 +29,6 @@ public class DecoratorsContainer {
         resultMap.put(currencyCode, currencyRatesResult.stream()
                 .map(s -> s + "\n")
                 .collect(Collectors.toList()));
-    }
-
-    private String addDefaultNullPoolsFromRate(Rates rate) {
-        return rate.toString();
     }
 
     public Object get(String objectToFind) {

@@ -16,6 +16,7 @@ public class PLNConvertDecor implements Decorator<String, Rates> {
     private static BigDecimal valueCheck(String value) {
         Optional<BigDecimal> bigDecimalTestValue = Optional.ofNullable(new BigDecimal(value));
         BigDecimal bd;
+
         if (bigDecimalTestValue.isPresent()) {
             bd = new BigDecimal(value);
         } else
@@ -33,7 +34,7 @@ public class PLNConvertDecor implements Decorator<String, Rates> {
         String mid = rate.getMid();
 
         if (bid != null) {
-            value = amountOfCurrency.divide(new BigDecimal(bid));
+            value = amountOfCurrency.divide(new BigDecimal(bid),4,BigDecimal.ROUND_HALF_UP);
             stringBuilder.append("You can buy: " + value.toPlainString() + "\t");
         }
         if (ask != null) {
