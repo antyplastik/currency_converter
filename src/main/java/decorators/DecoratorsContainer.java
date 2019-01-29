@@ -1,17 +1,40 @@
 package decorators;
 
 import currency.structures.CurrencyData;
+import currency.structures.Rates;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DecoratorsContainer {
 
     private List containerList = new LinkedList();
+    private Map<String, List<String>> resultMap = new HashMap();
 
+    public void add(String currencyCode, CurrencyData currencyData, List<Decorator> decorators) {
+        List<Rates> currencyRatesList = currencyData.getRates();
+        List<String> currencyRatesResult = new ArrayList<>();
 
-    public void add(String currencyCode, CurrencyData currencyData, List decorators) {
+        for (Rates oneRate : currencyRatesList) {
+            StringBuilder rateStr = new StringBuilder(oneRate.toString());
 
+            rateStr.append(addDefaultNullPoolsFromRate(oneRate));
+
+            for (Decorator decorator : decorators) {
+                rateStr.append("\t" + decorator.decorate(oneRate));
+            }
+            currencyRatesResult.add(rateStr.toString());
+        }
+
+        currencyRatesResult.add(0, currencyData.getCurrency());
+
+        resultMap.put(currencyCode, currencyRatesResult.stream()
+                .map(s -> s + "\n")
+                .collect(Collectors.toList()));
+    }
+
+    private String addDefaultNullPoolsFromRate(Rates rate) {
+        return rate.toString();
     }
 
     public Object get(String objectToFind) {

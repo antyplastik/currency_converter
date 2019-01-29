@@ -1,9 +1,11 @@
 package decorators;
 
+import currency.structures.Rates;
+
 import java.math.BigDecimal;
 import java.util.Optional;
 
-public class PLNConvertDecor {
+public class PLNConvertDecor implements Decorator<String, Rates> {
 
     private BigDecimal amountOfCurrency;
 
@@ -21,22 +23,29 @@ public class PLNConvertDecor {
         return bd;
     }
 
-    public static String conversionToPLN(String amountOfcurrency) {
+    @Override
+    public String decorate(Rates rate) {
+        StringBuilder stringBuilder = new StringBuilder();
+        BigDecimal value;
 
+        String bid = rate.getBid(); // sell
+        String ask = rate.getAsk(); // buy
+        String mid = rate.getMid();
 
-        return "";
+        if (bid != null) {
+            value = amountOfCurrency.divide(new BigDecimal(bid));
+            stringBuilder.append("You can buy: " + value.toPlainString() + "\t");
+        }
+        if (ask != null) {
+            value = amountOfCurrency.divide(new BigDecimal(ask));
+            stringBuilder.append("You can get: " + value.toPlainString() + "\t");
+        }
+
+        if (mid != null) {
+            value = amountOfCurrency.divide(new BigDecimal(bid));
+            stringBuilder.append("You can buy: " + value.toPlainString());
+        }
+
+        return stringBuilder.toString();
     }
-
-    public static String conversionFromPLN(String amountOfPLN) {
-        StringBuilder result = new StringBuilder();
-
-        BigDecimal fromPln = new BigDecimal(amountOfPLN);
-        if (fromPln != null)
-            ;
-        else
-            ;
-
-        return result.toString();
-    }
-
 }

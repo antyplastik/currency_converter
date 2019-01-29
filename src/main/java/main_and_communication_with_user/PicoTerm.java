@@ -2,6 +2,7 @@ package main_and_communication_with_user;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import controller.Controller;
+import decorators.Decorator;
 import decorators.PLNConvertDecor;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
@@ -47,7 +48,7 @@ public class PicoTerm implements Runnable {
     @Override
     public void run() {
         System.out.println("NBP Api Client and currency adapters" + "\t" + "v1.0");
-        List decorators = new ArrayList();
+        List <Decorator> decorators = new ArrayList();
 
         if (inputParametersArgs != null) {
 

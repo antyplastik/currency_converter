@@ -3,6 +3,7 @@ package controller;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import currency.CurrenciesContainer;
 import currency.structures.CurrencyData;
+import decorators.Decorator;
 import decorators.DecoratorsContainer;
 import nbp.api.rest.NBPapi;
 
@@ -18,11 +19,11 @@ public class Controller {
     private String stopDate;
     private String table;
     private String topCount;
-    private List decorators;
+    private List <Decorator> decorators;
 
     private CurrenciesContainer cc = new CurrenciesContainer();
 
-    public Controller(String[] currencies, String date, String startDate, String stopDate, String table, String topCount, List decorators) {
+    public Controller(String[] currencies, String date, String startDate, String stopDate, String table, String topCount, List<Decorator> decorators) {
         this.currencies = currencies;
         this.date = date;
         this.startDate = startDate;
