@@ -19,7 +19,7 @@ public class Controller {
     private String stopDate;
     private String table;
     private String topCount;
-    private List <Decorator> decorators;
+    private List<Decorator> decorators;
 
     private CurrenciesContainer cc = new CurrenciesContainer();
 
@@ -54,7 +54,7 @@ public class Controller {
         DecoratorsContainer dc = new DecoratorsContainer();
 
         for (Map.Entry entry : currenciesMap.entrySet())
-            dc.add(entry.getKey().toString(), (CurrencyData)entry.getValue(),decorators);
+            dc.add(entry.getKey().toString(), (CurrencyData) entry.getValue(), decorators);
 
         return dc.toString();
     }

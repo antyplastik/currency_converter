@@ -26,7 +26,7 @@ public class NBPapi {
                         .asString();
 
         if (currencyDataHttpResponse.getCode() > 400) {
-            String exceptionResponse = currencyDataHttpResponse.getBody().toString();
+            String exceptionResponse = currencyDataHttpResponse.getBody();
             throw new ServiceNotFoundException(exceptionResponse);
         }
 

@@ -25,26 +25,25 @@ public class PLNConvertDecor implements Decorator<String, Rates> {
     }
 
     @Override
-    public String decorate(Rates rate) {
+    public String decorate(String currencyCode, Rates rate) {
         StringBuilder stringBuilder = new StringBuilder();
-        BigDecimal value;
 
         String bid = rate.getBid(); // sell
         String ask = rate.getAsk(); // buy
         String mid = rate.getMid();
 
         if (bid != null) {
-            value = amountOfCurrency.divide(new BigDecimal(bid),4,BigDecimal.ROUND_HALF_UP);
-            stringBuilder.append("You can buy: " + value.toPlainString() + "\t");
+            BigDecimal value = amountOfCurrency.divide(new BigDecimal(bid),4,BigDecimal.ROUND_HALF_UP);
+            stringBuilder.append("You can sell: " + value.toPlainString() + " " + currencyCode + "\t");
         }
         if (ask != null) {
-            value = amountOfCurrency.divide(new BigDecimal(ask));
-            stringBuilder.append("You can get: " + value.toPlainString() + "\t");
+            BigDecimal value = amountOfCurrency.divide(new BigDecimal(ask),BigDecimal.ROUND_HALF_UP);
+            stringBuilder.append("You can buy: " + value.toPlainString() + " " + currencyCode + "\t");
         }
 
         if (mid != null) {
-            value = amountOfCurrency.divide(new BigDecimal(bid));
-            stringBuilder.append("You can buy: " + value.toPlainString());
+            BigDecimal value = amountOfCurrency.divide(new BigDecimal(bid));
+            stringBuilder.append("Is worth: " + value.toPlainString() + " " + currencyCode);
         }
 
         return stringBuilder.toString();

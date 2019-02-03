@@ -19,7 +19,7 @@ public class DecoratorsContainer {
             StringBuilder rateStr = new StringBuilder(oneRate.toString());
 
             for (Decorator decorator : decorators) {
-                rateStr.append("\t" + decorator.decorate(oneRate));
+                rateStr.append(decorator.decorate(currencyCode, oneRate) + "\t");
             }
             currencyRatesResult.add(rateStr.toString());
         }
@@ -37,6 +37,8 @@ public class DecoratorsContainer {
     }
 
     public String toString() {
-        return super.toString();
+        return resultMap.entrySet().stream()
+                .map(entry -> "Currency: " + entry.getKey().toUpperCase() + "\n" + entry.getValue().toString() + "\n")
+                .collect(Collectors.joining());
     }
 }

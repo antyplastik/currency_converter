@@ -2,6 +2,6 @@ package decorators;
 
 public interface Decorator <T, R> {
 
-    T decorate(R objectToDecorate);
+    T decorate(String string, R objectToDecorate);
 
 }

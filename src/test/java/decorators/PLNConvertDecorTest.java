@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +36,12 @@ public class PLNConvertDecorTest {
         CurrencyData currencyData = jsonConvert.deserialization(jsonToTest);
         String str = currencyData.toString();
 
-        decoratorsList.add(new PLNConvertDecor(valueToConvert));
+        String val1 = "33.33";
+        String val2 = "3";
+        BigDecimal bd1 = new BigDecimal(val1);
+        BigDecimal bd2 = bd1.divide(new BigDecimal(val2));
 
+        decoratorsList.add(new PLNConvertDecor(valueToConvert));
 
         dc.add(currencyData.getCode(), currencyData, decoratorsList);
 
