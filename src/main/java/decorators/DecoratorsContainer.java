@@ -37,8 +37,17 @@ public class DecoratorsContainer {
     }
 
     public String toString() {
-        return resultMap.entrySet().stream()
-                .map(entry -> entry.getValue().toString() + "\n")
-                .collect(Collectors.joining());
+//        String result = resultMap.entrySet().stream()
+//                .map(entry ->entry.getValue().toString() + "\n")
+//                .map(e->e.replaceAll(",",""))
+//                .collect(Collectors.joining());
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, List<String>> entry: resultMap.entrySet()){
+            sb.append(entry.getValue());
+        }
+
+        return sb.toString().replaceAll("\\[","").replaceAll(",","").replaceAll("\\]","");
     }
 }

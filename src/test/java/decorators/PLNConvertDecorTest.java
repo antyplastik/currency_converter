@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,20 +31,15 @@ public class PLNConvertDecorTest {
 
     @Test
     @Parameters(method = "jsonToTest")
-    public void calculateRatesForThePolishCurrency(String jsonToTest, String valueToConvert, String expectedResult) {
+    public void decoratorPLNConvertDecorTest(String jsonToTest, String valueToConvert, String expectedResult) {
         CurrencyData currencyData = jsonConvert.deserialization(jsonToTest);
-        String str = currencyData.toString();
-
-        String val1 = "33.33";
-        String val2 = "3";
-        BigDecimal bd1 = new BigDecimal(val1);
-        BigDecimal bd2 = bd1.divide(new BigDecimal(val2));
 
         decoratorsList.add(new PLNConvertDecor(valueToConvert));
 
         dc.add(currencyData.getCode(), currencyData, decoratorsList);
+        String result = dc.toString();
 
-        assertThat(dc.toString(), is(equalTo(expectedResult)));
+        assertThat(result, is(equalTo(expectedResult)));
 
     }
 
@@ -70,9 +64,9 @@ public class PLNConvertDecorTest {
 
                         "100.00",
 
-                        "Currency: USD\n" +
-                                "Currency name: dolar amerykański\n" +
-                                "064/C/NBP/2016\t2016-04-04\tbuy: 3.6929 PLN\t  sell: 3.7675 PLN\t  "},
+                        "Currency: USD" +
+                                "\nCurrency name: dolar amerykański" +
+                                "\n 064/C/NBP/2016\t2016-04-04\tbuy: 3.6929 PLN\tsell: 3.7675 PLN\tYou can sell: 27.0790 USD\tYou can buy: 26.54 USD\n"},
 
                 new Object[]{"// 20190110201816\n" +
                         "// http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json\n" +

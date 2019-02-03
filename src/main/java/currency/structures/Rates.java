@@ -49,17 +49,17 @@ public class Rates {
     public String toString() {
         StringBuilder resultStr = new StringBuilder();
 
-        resultStr.append(no + "\t");
+        resultStr.append(no);
         if (tradingDate != null)
-            resultStr.append(tradingDate + "\t");
+            resultStr.append("\t" + tradingDate);
         if (effectiveDate != null)
-            resultStr.append(effectiveDate + "\t");
+            resultStr.append("\t" + effectiveDate);
         if (bid != null)
-            resultStr.append("buy: " + bid + " PLN\t  ");
+            resultStr.append("\t" + "buy: " + bid + " PLN");
         if (ask != null)
-            resultStr.append("sell: " + ask + " PLN\t  ");
+            resultStr.append("\t" + "sell: " + ask + " PLN");
         if (mid != null)
-            resultStr.append("middle: " + mid + " PLN");
+            resultStr.append("\t" + "middle: " + mid + " PLN");
 
         return resultStr.toString();
     }
