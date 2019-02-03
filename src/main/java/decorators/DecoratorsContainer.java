@@ -19,12 +19,12 @@ public class DecoratorsContainer {
             StringBuilder rateStr = new StringBuilder(oneRate.toString());
 
             for (Decorator decorator : decorators) {
-                rateStr.append(decorator.decorate(currencyCode, oneRate) + "\t");
+                rateStr.append(decorator.decorate(currencyCode, oneRate));
             }
             currencyRatesResult.add(rateStr.toString());
         }
 
-        currencyRatesResult.add(0, currencyData.getCurrency());
+        currencyRatesResult.add(0, ("Currency: " + currencyData.getCode()+ "\nCurrency name: "+ currencyData.getCurrency()));
 
         resultMap.put(currencyCode, currencyRatesResult.stream()
                 .map(s -> s + "\n")
@@ -38,7 +38,7 @@ public class DecoratorsContainer {
 
     public String toString() {
         return resultMap.entrySet().stream()
-                .map(entry -> "Currency: " + entry.getKey().toUpperCase() + "\n" + entry.getValue().toString() + "\n")
+                .map(entry -> entry.getValue().toString() + "\n")
                 .collect(Collectors.joining());
     }
 }

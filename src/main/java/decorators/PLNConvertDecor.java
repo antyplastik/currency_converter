@@ -34,16 +34,16 @@ public class PLNConvertDecor implements Decorator<String, Rates> {
 
         if (bid != null) {
             BigDecimal value = amountOfCurrency.divide(new BigDecimal(bid),4,BigDecimal.ROUND_HALF_UP);
-            stringBuilder.append("You can sell: " + value.toPlainString() + " " + currencyCode + "\t");
+            stringBuilder.append("\tYou can sell: " + value.toPlainString() + " " + currencyCode);
         }
         if (ask != null) {
             BigDecimal value = amountOfCurrency.divide(new BigDecimal(ask),BigDecimal.ROUND_HALF_UP);
-            stringBuilder.append("You can buy: " + value.toPlainString() + " " + currencyCode + "\t");
+            stringBuilder.append("\tYou can buy: " + value.toPlainString() + " " + currencyCode);
         }
 
         if (mid != null) {
             BigDecimal value = amountOfCurrency.divide(new BigDecimal(bid));
-            stringBuilder.append("Is worth: " + value.toPlainString() + " " + currencyCode);
+            stringBuilder.append("\tIs worth: " + value.toPlainString() + " " + currencyCode);
         }
 
         return stringBuilder.toString();
