@@ -8,9 +8,11 @@ import java.util.Optional;
 public class PLNConvertDecor implements Decorator<String, Rates> {
 
     private BigDecimal amountOfCurrency;
+    private String amountCurrencyCode;
 
-    public PLNConvertDecor(String amountOfCurrency) {
+    public PLNConvertDecor(String amountOfCurrency, String amountCurrencyCode) {
         this.amountOfCurrency = valueCheck(amountOfCurrency);
+        this.amountCurrencyCode = amountCurrencyCode;
     }
 
     private static BigDecimal valueCheck(String value) {
@@ -33,17 +35,17 @@ public class PLNConvertDecor implements Decorator<String, Rates> {
         String mid = rate.getMid();
 
         if (bid != null) {
-            BigDecimal value = amountOfCurrency.divide(new BigDecimal(bid),4,BigDecimal.ROUND_HALF_UP);
-            stringBuilder.append("\tYou can sell: " + value.toPlainString() + " " + currencyCode);
+            BigDecimal value = amountOfCurrency.divide(new BigDecimal(bid), 4, BigDecimal.ROUND_HALF_UP);
+            stringBuilder.append("\tTo have " + amountOfCurrency.toPlainString()+ " "+ amountCurrencyCode + " you have to sell " + value.toPlainString() + " " + currencyCode);
         }
         if (ask != null) {
-            BigDecimal value = amountOfCurrency.divide(new BigDecimal(ask),BigDecimal.ROUND_HALF_UP);
-            stringBuilder.append("\tYou can buy: " + value.toPlainString() + " " + currencyCode);
+            BigDecimal value = amountOfCurrency.divide(new BigDecimal(ask), 4, BigDecimal.ROUND_HALF_UP);
+            stringBuilder.append("\tFor " + amountOfCurrency.toPlainString()+ " "+ amountCurrencyCode + " you can buy " + value.toPlainString() + " " + currencyCode);
         }
 
         if (mid != null) {
-            BigDecimal value = amountOfCurrency.divide(new BigDecimal(bid));
-            stringBuilder.append("\tIs worth: " + value.toPlainString() + " " + currencyCode);
+            BigDecimal value = amountOfCurrency.divide(new BigDecimal(mid), 4, BigDecimal.ROUND_HALF_UP);
+            stringBuilder.append("\t" + amountOfCurrency.toPlainString() + " is worth: " + value.toPlainString() + " " + currencyCode);
         }
 
         return stringBuilder.toString();

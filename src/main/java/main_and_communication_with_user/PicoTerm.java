@@ -83,7 +83,7 @@ public class PicoTerm implements Runnable {
 //            }
 
             if (amountToConvert != null)
-                decorators.add(new PLNConvertDecor(amountToConvert));
+                decorators.add(new PLNConvertDecor(amountToConvert, "PLN"));
 
 //            if (foreignCurrencyDecorator != null) {
 //                if (foreignCurrencyDecorator[0] != null && foreignCurrencyDecorator[1] != null)

@@ -40,7 +40,10 @@ public class DecoratorsContainer {
 //        String result = resultMap.entrySet().stream()
 //                .map(entry ->entry.getValue().toString() + "\n")
 //                .map(e->e.replaceAll(",",""))
-//                .collect(Collectors.joining());
+//                .collect(Collectors.joining())
+//                ..replaceAll("\\[","")
+//                .replaceAll(",","")
+//                .replaceAll("\\]","");
 
         StringBuilder sb = new StringBuilder();
 
