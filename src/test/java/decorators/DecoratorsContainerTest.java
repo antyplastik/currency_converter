@@ -30,7 +30,7 @@ public class DecoratorsContainerTest {
     }
 
     @Test
-    @Parameters(method = "jsonToTest")
+    @Parameters(method = "jsonForPLNConvertDecorTest")
     public void decoratorPLNConvertDecorTest(String jsonToTest, String valueToConvert, String expectedResult) {
         CurrencyData currencyData = jsonConvert.deserialization(jsonToTest);
 
@@ -67,7 +67,7 @@ public class DecoratorsContainerTest {
 
                         "Currency: USD\n" +
                                 "Currency name: dolar amerykański\n" +
-                                " 064/C/NBP/2016\t2016-04-04\tbuy: 3.6929 PLN\tsell: 3.7675 PLN\tTo have 100.00 PLN you have to sell 27.0790 USD\tFor 100.00 PLN you can buy 26.5428 USD\n"},
+                                " 064/C/NBP/2016\t2016-04-04\tbuy: 3.6929 PLN\tsell: 3.7675 PLN\t->\tTo have 100.00 PLN you have to sell 27.0790 USD\tFor 100.00 PLN you can buy 26.5428 USD\n"},
 
                 new Object[]{"// 20190110201816\n" +
                         "// http://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json\n" +
@@ -134,16 +134,16 @@ public class DecoratorsContainerTest {
 
                         "Currency: GBP\n" +
                                 "Currency name: funt szterling\n" +
-                                " 247/A/NBP/2018\t2018-12-20\tmiddle: 4.7357 PLN\t100.00 is worth: 21.1162 GBP\n" +
-                                " 248/A/NBP/2018\t2018-12-21\tmiddle: 4.7530 PLN\t100.00 is worth: 21.0393 GBP\n" +
-                                " 249/A/NBP/2018\t2018-12-24\tmiddle: 4.7544 PLN\t100.00 is worth: 21.0331 GBP\n" +
-                                " 250/A/NBP/2018\t2018-12-27\tmiddle: 4.7493 PLN\t100.00 is worth: 21.0557 GBP\n" +
-                                " 251/A/NBP/2018\t2018-12-28\tmiddle: 4.7480 PLN\t100.00 is worth: 21.0615 GBP\n" +
-                                " 252/A/NBP/2018\t2018-12-31\tmiddle: 4.7895 PLN\t100.00 is worth: 20.8790 GBP\n" +
-                                " 001/A/NBP/2019\t2019-01-02\tmiddle: 4.7737 PLN\t100.00 is worth: 20.9481 GBP\n" +
-                                " 002/A/NBP/2019\t2019-01-03\tmiddle: 4.7589 PLN\t100.00 is worth: 21.0133 GBP\n" +
-                                " 003/A/NBP/2019\t2019-01-04\tmiddle: 4.7803 PLN\t100.00 is worth: 20.9192 GBP\n" +
-                                " 004/A/NBP/2019\t2019-01-07\tmiddle: 4.7907 PLN\t100.00 is worth: 20.8738 GBP\n"}
+                                " 247/A/NBP/2018\t2018-12-20\tmiddle: 4.7357 PLN\t->\t100.00 PLN is worth: 21.1162 GBP\n" +
+                                " 248/A/NBP/2018\t2018-12-21\tmiddle: 4.7530 PLN\t->\t100.00 PLN is worth: 21.0393 GBP\n" +
+                                " 249/A/NBP/2018\t2018-12-24\tmiddle: 4.7544 PLN\t->\t100.00 PLN is worth: 21.0331 GBP\n" +
+                                " 250/A/NBP/2018\t2018-12-27\tmiddle: 4.7493 PLN\t->\t100.00 PLN is worth: 21.0557 GBP\n" +
+                                " 251/A/NBP/2018\t2018-12-28\tmiddle: 4.7480 PLN\t->\t100.00 PLN is worth: 21.0615 GBP\n" +
+                                " 252/A/NBP/2018\t2018-12-31\tmiddle: 4.7895 PLN\t->\t100.00 PLN is worth: 20.8790 GBP\n" +
+                                " 001/A/NBP/2019\t2019-01-02\tmiddle: 4.7737 PLN\t->\t100.00 PLN is worth: 20.9481 GBP\n" +
+                                " 002/A/NBP/2019\t2019-01-03\tmiddle: 4.7589 PLN\t->\t100.00 PLN is worth: 21.0133 GBP\n" +
+                                " 003/A/NBP/2019\t2019-01-04\tmiddle: 4.7803 PLN\t->\t100.00 PLN is worth: 20.9192 GBP\n" +
+                                " 004/A/NBP/2019\t2019-01-07\tmiddle: 4.7907 PLN\t->\t100.00 PLN is worth: 20.8738 GBP\n"}
         };
     }
 

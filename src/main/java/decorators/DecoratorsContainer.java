@@ -17,7 +17,7 @@ public class DecoratorsContainer {
 
         for (Rates oneRate : currencyRatesList) {
             StringBuilder rateStr = new StringBuilder(oneRate.toString());
-
+            rateStr.append("\t->");
             for (Decorator decorator : decorators) {
                 rateStr.append(decorator.decorate(currencyCode, oneRate));
             }
